@@ -1,0 +1,9 @@
+#root .container:nth-of-type(2){
+
+}
+
+.headerPesquisar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

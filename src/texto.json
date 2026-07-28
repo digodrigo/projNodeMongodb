@@ -1,0 +1,11 @@
+{
+    "gastoMensal":"R$4,00", 
+    "gastoTotal":"R$37,50", 
+    "saldoAtual":"R$521,30", 
+    "compras":[
+        {"id":1,"categoria":"Lazer", "local":"Steam", "valor":"36,00","data":"23/07/2026"},
+        {"id":2,"categoria":"Mercado", "local":"X", "valor":"136,30","data":"22/07/2026"},
+        {"id":2,"categoria":"Lazer", "local":"Discord", "valor":"26,00","data":"19/07/2026"},
+        {"id":2,"categoria":"Transporte", "local":"Uber", "valor":"21,00","data":"03/07/2026"}
+    ]
+}
