@@ -1,0 +1,105 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8fafc;
+
+  form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    .tituloLogin {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Container dos inputs sobrepostos */
+    .divInput {
+      position: relative; // Serve de referência para o posicionamento absoluto
+      width: 100%;
+      height: 42px; // Altura fixa para garantir que ambos fiquem alinhados
+
+      input {
+        width: 100%;
+        height: 100%;
+        padding: 0 12px;
+        font-size: 0.95rem;
+        border-radius: 6px;
+        box-sizing: border-box;
+
+        /* Input principal (O que você digita) */
+        &#emailDefault,
+        &#senha,
+        &#nome,
+        &[type="password"] {
+          position: relative;
+          z-index: 2; // Fica na frente para receber os cliques e digitação
+          background: transparent; // Fundo transparente para deixar a sugestão visível atrás
+          border: 1px solid #cbd5e1;
+          color: #0f172a;
+
+          &:focus {
+            outline: none;
+            border-color: #3b82f6;
+          }
+        }
+
+        /* Input de sugestão (O que fica desabilitado atrás) */
+        &#emailDisabled {
+          position: absolute; // Sobrepõe exatamente na mesma posição do input frontal
+          top: 0;
+          left: 0;
+          z-index: 1; // Fica atrás
+          border: 1px solid transparent; // Não duplica a borda
+          background-color: #ffffff;
+          color: #94a3b8; // Cor do texto da sugestão (cinza claro)
+          user-select: none;
+          pointer-events: none; // Evita interferência de cliques
+        }
+      }
+    }
+
+    button {
+      height: 42px;
+      background-color: #3b82f6;
+      color: #ffffff;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #2563eb;
+      }
+    }
+
+    p {
+      text-align: center;
+      font-size: 0.875rem;
+      color: #64748b;
+      margin: 0;
+
+      a {
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
