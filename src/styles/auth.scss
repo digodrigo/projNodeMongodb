@@ -3,13 +3,15 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f8fafc;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: var(--bg-main);
 
   form {
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow);
     width: 100%;
     max-width: 380px;
     display: flex;
@@ -19,7 +21,7 @@
     .tituloLogin {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #0f172a;
+      color: var(--text-primary);
       text-align: center;
       margin-bottom: 0.5rem;
     }
@@ -39,19 +41,15 @@
         box-sizing: border-box;
 
         /* Input principal (O que você digita) */
-        &#emailDefault,
-        &#senha,
-        &#nome,
-        &[type="password"] {
+        &:not(#emailDisabled) {
           position: relative;
           z-index: 2; // Fica na frente para receber os cliques e digitação
           background: transparent; // Fundo transparente para deixar a sugestão visível atrás
-          border: 1px solid #cbd5e1;
-          color: #0f172a;
+          border: 1px solid var(--border-color);
+          color: var(--text-primary);
 
           &:focus {
-            outline: none;
-            border-color: #3b82f6;
+            border-color: var(--accent);
           }
         }
 
@@ -62,7 +60,7 @@
           left: 0;
           z-index: 1; // Fica atrás
           border: 1px solid transparent; // Não duplica a borda
-          background-color: #ffffff;
+          background-color: var(--bg-card);
           color: #94a3b8; // Cor do texto da sugestão (cinza claro)
           user-select: none;
           pointer-events: none; // Evita interferência de cliques
@@ -72,7 +70,7 @@
 
     button {
       height: 42px;
-      background-color: #3b82f6;
+      background-color: var(--accent);
       color: #ffffff;
       font-weight: 600;
       border: none;
@@ -81,18 +79,18 @@
       transition: background-color 0.2s ease;
 
       &:hover {
-        background-color: #2563eb;
+        background-color: var(--accent-hover);
       }
     }
 
     p {
       text-align: center;
       font-size: 0.875rem;
-      color: #64748b;
+      color: var(--text-muted);
       margin: 0;
 
       a {
-        color: #3b82f6;
+        color: var(--accent);
         text-decoration: none;
         font-weight: 500;
 

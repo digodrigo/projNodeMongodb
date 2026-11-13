@@ -1,0 +1,39 @@
+:root {
+  --bg-main: #f4f7fb;
+  --bg-card: #ffffff;
+  --text-primary: #172b4d;
+  --text-muted: #52647c;
+  --border-color: #d9e2ef;
+  --shadow: 0 3px 12px rgb(23 43 77 / 6%);
+  --table-hover: #edf3fc;
+  --input-bg: #ffffff;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --focus-ring: #2563eb;
+  color-scheme: light;
+}
+
+.dashboard-app-wrapper[data-theme='dark'] {
+  --bg-main: #101827;
+  --bg-card: #1a2638;
+  --text-primary: #e7eef8;
+  --text-muted: #b0bfd2;
+  --border-color: #36465d;
+  --shadow: 0 3px 12px rgb(0 0 0 / 20%);
+  --table-hover: #24344b;
+  --input-bg: #142033;
+  --focus-ring: #93b4ff;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+:where(button, a, input, select):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}

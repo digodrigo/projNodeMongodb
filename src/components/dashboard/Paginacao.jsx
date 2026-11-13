@@ -6,7 +6,7 @@ function Paginacao({ paginaAtual, totalPaginas, setPaginaAtual }) {
             <button
                 className="paginacao-btn paginacao-anterior"
                 onClick={() => setPaginaAtual(paginaAtual - 1)}
-                disabled={paginaAtual === 1}
+                disabled={paginaAtual <= 1}
             >
                 &lsaquo; Anterior
             </button>
@@ -35,7 +35,7 @@ function Paginacao({ paginaAtual, totalPaginas, setPaginaAtual }) {
             <button
                 className="paginacao-btn paginacao-proxima"
                 onClick={() => setPaginaAtual(paginaAtual + 1)}
-                disabled={paginaAtual === totalPaginas}
+                disabled={paginaAtual >= totalPaginas}
             >
                 Próxima &rsaquo;
             </button>

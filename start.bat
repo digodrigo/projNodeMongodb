@@ -1,4 +1,4 @@
 @echo off
-start cmd /k "npm run dev"
-
-start cmd /k "cd src && node api.js"
+cd /d "%~dp0"
+start "Frontend" cmd /k "npm run dev"
+start "Backend" cmd /k "npm run server"

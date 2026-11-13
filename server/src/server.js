@@ -1,14 +1,15 @@
+import './config/env.js';
 import express from 'express';
 import cors from 'cors';
 import { MongoClient, ObjectId } from 'mongodb';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import verificarToken from './middleware/verificarToken.js';
-import dotenv from 'dotenv';
+
 
 const app = express();
 const port = 3000;
-dotenv.config();
+
 
 const client = new MongoClient(process.env.MONGO_URI, {serverSelectionTimeoutMS: 5000, connectTimeoutMS: 10000, socketTimeoutMS: 45000, maxPoolSize: 10, wtimeoutMS: 2500, retryWrites: true});
 
@@ -43,7 +44,7 @@ app.post('/Login', async (req, res) => {
         const token = jwt.sign({
             id: usuario._id,
             email: usuario.email
-        }, process.env.JWT_SECRET, { expiresIn: '30s' });
+        }, process.env.JWT_SECRET, { expiresIn: '5000s' });
 
         res.status(200).json({
             token: token,

@@ -2,11 +2,15 @@
 import Chart from 'chart.js/auto';
 import { useEffect, useRef } from 'react';
 
-function Grafico({ arrayGastos = [] }) {
+function Grafico({ arrayGastos = [], mesSelecionado, ano }) {
     const chartRef = useRef(null);
 
     useEffect(() => {
-        if (!chartRef.current) return;
+        if (!chartRef.current) return;  
+
+        console.log('arrayGastos:', arrayGastos);
+        console.log('mesSelecionado:', mesSelecionado);
+        console.log('ano:', ano);
 
         const categorias = {
             Lazer: 0,
@@ -16,10 +20,17 @@ function Grafico({ arrayGastos = [] }) {
         };
 
         for (let i = 0; i < arrayGastos.length; i++) {
-            const categoria = arrayGastos[i].categoria;
+            if(Number(arrayGastos[i].data.split('-')[0]) === ano && Number(arrayGastos[i].data.split('-')[1]) === mesSelecionado) {
+                const categoria = arrayGastos[i].categoria;
 
-            if (Object.hasOwn(categorias, categoria)) {
-                categorias[categoria]++;
+                if (Object.hasOwn(categorias, categoria)) {
+                    categorias[categoria]++;
+                    console.log({
+                        data: arrayGastos[i].data,
+                        categoria,
+                        quantidadeAcumulada: categorias[categoria]
+                    });
+                }
             }
         }
 
@@ -52,7 +63,7 @@ function Grafico({ arrayGastos = [] }) {
         return () => {
             grafico.destroy();
         };
-    }, [arrayGastos]);
+    }, [arrayGastos, mesSelecionado]);
 
     return (
         <div style={{ height: '400px', position: 'relative' }}>

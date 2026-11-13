@@ -1,8 +1,8 @@
-import './Add.scss'
+import './ExpenseForm.scss'
 import { useState, useEffect } from 'react'
 import {useNavigate} from 'react-router-dom';
 
-function Botao({ gastoEditando }) {
+function ExpenseForm({ gastoEditando }) {
     const [inputCategoria, setInputCategoria] = useState('');
     const [inputCompra, setInputCompra] = useState('');
     const [inputValor, setInputValor] = useState('');
@@ -122,4 +122,4 @@ function Botao({ gastoEditando }) {
     )
 }
 
-export default Botao
+export default ExpenseForm

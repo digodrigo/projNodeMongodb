@@ -1,12 +1,33 @@
-import {useState} from 'react';
-import "./Login.scss"
+import { useState } from 'react'
+import "../styles/auth.scss"
 import {Link, useNavigate} from 'react-router-dom';
 
-function Cadastrar (){
-    const navigate = useNavigate();
+function Login (){
+
     const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
-    const [nome, setNome] = useState('');
+    const navigate = useNavigate();
+
+    async function Logar(e) {
+        e.preventDefault()
+        try {
+            const tryLogin = await fetch('http://localhost:3000/Login', {
+                method:"POST",
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({email: login, senha})
+            });
+            const result = await tryLogin.json();           
+            if(tryLogin.ok) {
+                localStorage.setItem('token', result.token);
+                alert(result.mensagem);
+                navigate('/dashboard');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const provedores = ['gmail.com', 'hotmail.com', 'yahoo.com', 'outlook.com', 'icloud.com'];
 
@@ -41,31 +62,11 @@ function Cadastrar (){
         }
     }
 
-    async function Cadastrar(e) {
-        e.preventDefault()
-        try {
-            const tryCadastrar = await fetch('http://localhost:3000/cadastrar', {
-                method:"POST",
-                headers: {
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify({email: login, nome: nome, senha: senha})
-            });
-            const result = await tryCadastrar.json();
-            if(tryCadastrar.ok) {
-                alert(result.mensagem);
-                navigate('/');
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     return (
         <>
             <div className="form-wrapper">
-                <form onSubmit={Cadastrar}>
-                    <p className="tituloLogin">Cadastrar</p>
+                <form onSubmit={Logar}>
+                    <p className="tituloLogin">Login</p>
                     <div className="divInput">
                         <input 
                             type="text" 
@@ -88,17 +89,14 @@ function Cadastrar (){
                         />                          
                     </div>
                     <div className="divInput">
-                        <input type="text" name="nome" id="nome" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
-                    </div>
-                    <div className="divInput">
                         <input type="password" name="senha" id="senha" placeholder="Senha" onChange={(e)=> setSenha(e.target.value)} required/>
                     </div>
-                    <button type="submit">Cadastrar</button>
-                    <p>Já tem uma conta? <Link to="/">Faça login aqui</Link></p>
+                    <button type="submit">Logar</button>
+                    <p>Não tem uma conta? <Link to="/cadastrar">crie sua conta aqui</Link></p>
                 </form>            
             </div>
         </>
-    )
+    ) 
 }
 
-export default Cadastrar
+export default Login

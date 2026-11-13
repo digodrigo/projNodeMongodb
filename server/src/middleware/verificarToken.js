@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import '../config/env.js';
 
-dotenv.config();
+
 
 function verificarToken(req, res, next) {
     const authHeader = req.headers.authorization;

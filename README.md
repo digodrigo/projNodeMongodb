@@ -33,18 +33,24 @@ O projeto utiliza JavaScript com ES Modules. O Express interpreta os corpos JSON
 ## Organização do projeto
 
 ```text
-public/                       Recursos públicos
-src/
+src/                          Frontend React
+  pages/                      Login, cadastro e página do dashboard
+  components/
+    dashboard/                Tabela, gráfico e paginação
+    expenses/                 Formulário compartilhado de adição e edição
+  styles/                     Estilos compartilhados de autenticação e dashboard
   assets/                     Imagens e recursos do frontend
-  components/Dashboard/       Gráfico e paginação
-  middleware/verificarToken.js
-  api.js                      Servidor Express e rotas da API
-  Routes.jsx                  Rotas do frontend
-  Login.jsx                   Login e autocomplete de e-mail
-  Cadastrar.jsx               Cadastro de usuários
-  App.jsx                     Consulta de dados e estrutura do dashboard
-  Dashboard.jsx               Indicadores, tabela, ordenação e gráfico
-  Add.jsx                     Formulário de adição e edição
+  App.jsx                     Rotas do frontend
+  main.jsx                    Entrada do React
+server/
+  src/
+    config/env.js             Carregamento das variáveis de ambiente
+    middleware/               Verificação do JWT
+    server.js                 Servidor Express e rotas da API
+  .env.example                Modelo de configuração sem credenciais
+public/                       Recursos públicos do Vite
+data/examples/                Dados de exemplo, sem uso pela API
+scripts/check-dns.js           Experimento de configuração DNS
 start.bat                     Inicialização local no Windows
 ```
 
@@ -64,7 +70,7 @@ Na raiz do projeto, instale as dependências:
 npm ci
 ```
 
-Crie o arquivo `src/.env` com as variáveis abaixo e substitua os marcadores pelos seus próprios valores:
+Crie o arquivo `server/.env` com as variáveis abaixo e substitua os marcadores pelos seus próprios valores:
 
 ```dotenv
 MONGO_URI=<sua-string-de-conexao-do-mongodb-atlas>
@@ -80,11 +86,10 @@ O código utiliza o banco `projs` e a coleção `projFinanceiro`.
 Em um terminal, a partir da raiz:
 
 ```sh
-cd src
-node api.js
+npm run server
 ```
 
-A API escuta na porta `3000`. Execute o servidor dentro de `src` para que `dotenv.config()` encontre o arquivo `src/.env`.
+A API escuta na porta `3000`. A configuração resolve `server/.env` a partir do próprio arquivo, independentemente do diretório do terminal. Use `server/.env.example` como modelo.
 
 ### Frontend
 
@@ -102,6 +107,8 @@ No Windows, também é possível executar `start.bat` a partir da raiz para inic
 
 | Comando | Finalidade |
 | --- | --- |
+| `npm run server` | Iniciar a API Express |
+| `npm run server:dev` | Iniciar a API com reinício automático ao alterar arquivos |
 | `npm run build` | Gerar os arquivos do frontend em `dist` |
 | `npm run preview` | Servir localmente o frontend gerado pelo build |
 | `npm run lint` | Executar a análise estática com ESLint |
@@ -162,6 +169,5 @@ O middleware responde com HTTP `401` quando o token está ausente, inválido ou 
 - [ ] Implementar o cálculo e a exibição do saldo atual, cujo cartão ainda está vazio.
 - [ ] Padronizar o tratamento de HTTP `401`, inclusive na edição, e os redirecionamentos para o login: alguns usam `/login`, mas a rota existente é `/`.
 - [ ] Revisar a duração da sessão JWT conforme a experiência desejada para a aplicação.
-- [ ] Padronizar maiúsculas e minúsculas nos caminhos dos imports, como `Paginacao.scss`, cujo arquivo é `paginacao.scss`, para compatibilidade com sistemas de arquivos sensíveis a essa diferença.
 
 As funcionalidades listadas refletem o código atual; o projeto continua em desenvolvimento e os fluxos ainda precisam de validação completa com a API e o MongoDB Atlas.

@@ -23,8 +23,8 @@
         padding: 0 12px;
 
         background-color: #ffffff;
-        color: #495057;
-        border: 1px solid #dee2e6;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
         border-radius: 6px;
 
         font-family: inherit;
@@ -38,34 +38,31 @@
             color 0.2s ease;
 
         &:hover:not(:disabled):not(.ativo) {
-            background-color: #f8f9fa;
-            border-color: #adb5bd;
+            background-color: var(--bg-main);
+            border-color: var(--text-muted);
         }
 
         &:focus-visible {
-            outline: 3px solid rgba(13, 110, 253, 0.25);
+            outline: 2px solid var(--focus-ring);
             outline-offset: 2px;
         }
 
         &.ativo {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
-            color: #ffffff;
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-card);
             cursor: default;
         }
 
         &:disabled {
-            color: #adb5bd;
-            background-color: #f8f9fa;
-            border-color: #e9ecef;
+            color: var(--text-muted);
+            background-color: var(--bg-main);
+            border-color: var(--border-color);
             cursor: not-allowed;
         }
     }
 
-    .paginacao-anterior,
-    .paginacao-proxima {
-        gap: 4px;
-    }
+
 }
 
 @media (max-width: 480px) {
